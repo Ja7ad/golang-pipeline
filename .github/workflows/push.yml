@@ -38,19 +38,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: PrepareReg Names
-        id: read-docker-image-identifiers
-        run: |
-          echo VERSION_TAG=$(echo ${{ steps.version_step.outputs.version_tag }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
-          echo LASTEST_TAG=$(echo ${{ steps.version_step.outputs.latest_tag  }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
-
       - name: Build and push Docker images
         id: docker_build
         uses: docker/build-push-action@v2.5.0
         with:
           push: true
           tags: |
-            ${{env.VERSION_TAG}}
-            ${{env.LASTEST_TAG}}
+            ${{steps.version_step.outputs.version_tag}}
+            ${{steps.version_step.outputs.latest_tag}}
           build-args: |
             ${{steps.version_step.outputs.version}}
