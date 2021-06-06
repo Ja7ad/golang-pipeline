@@ -1,0 +1,26 @@
+kind: pipeline
+name: default
+workspace:
+  base: /go
+  path: src/github.com/Ja7ad/golang-pipeline
+steps:
+  - name: test
+    image: golang
+    commands:
+      - go get
+      - go test
+      
+  - name: build
+    image: golang
+    commands:
+      - go get
+      - go build -o gpipline
+      - chmod +x gpipline
+      
+  - name: run
+    image: golang
+    commands:
+      - go get
+      - go build -o gpipline
+      - chmod +x gpipline
+      - ./gpipline
