@@ -1,24 +1,9 @@
 kind: pipeline
-name: go-pipline
+name: default
 
 steps:
-  - name: test
-    image: golang
-    commands:
-      - go get
-      - go test
-      
-  - name: build
-    image: golang
-    commands:
-      - go get
-      - go build -o gpipline
-      - chmod +x gpipline
-      
-  - name: run
-    image: golang
-    commands:
-      - go get
-      - go build -o gpipline
-      - chmod +x gpipline
-      - ./gpipline
+- name: test
+  image: golang
+  commands:
+  - go test
+  - go build
