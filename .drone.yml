@@ -1,8 +1,6 @@
 kind: pipeline
-name: default
-workspace:
-  base: /go
-  path: src/github.com/Ja7ad/golang-pipeline
+name: go-pipline
+
 steps:
   - name: test
     image: golang
